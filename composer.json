@@ -42,7 +42,7 @@
         "laminas/laminas-dependency-plugin": "^1.0 || ^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.4",
+        "phpunit/phpunit": "^8.5.13 || ^9.4",
         "laminas/laminas-router": "^3.3"
     },
     "autoload": {
