@@ -2,20 +2,22 @@ language: php
 
 sudo: false
 
+
 matrix:
   include:
   - php: '7.2'
   - php: '7.3'
   - php: '7.4'
   - php: '8.0'
+    env:
+      - COMPOSER_ARGS=--ignore-platform-reqs
 
 cache:
   directories:
   - "$HOME/.composer/cache"
 
 before_install:
-- travis_retry composer self-update
-- travis_retry composer update --prefer-dist --no-interaction --prefer-stable
+- travis_retry composer update --prefer-dist --no-interaction --prefer-stable $COMPOSER_ARGS
 
 script:
 - composer test:ci
