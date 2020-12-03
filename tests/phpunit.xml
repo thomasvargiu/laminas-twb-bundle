@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="Bootstrap.php"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="Bootstrap.php"
          colors="true"
          verbose="true"
-         backupGlobals="false"
-         backupStaticAttributes="false"
-         stopOnFailure="true">
+         stopOnFailure="false">
     <testsuites>
         <testsuite name="TwbBundleTest">
             <directory suffix=".php">./TwbBundleTest/</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist>
+    <coverage>
+        <include>
             <directory suffix=".php">../src/</directory>
             <file>../Module.php</file>
-        </whitelist>
-    </filter>
+        </include>
+    </coverage>
 </phpunit>

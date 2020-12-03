@@ -67,7 +67,7 @@ abstract class AbstractTest extends TestCase
      * Prepares the environment before running a test
      *
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $cwd = __DIR__;
 

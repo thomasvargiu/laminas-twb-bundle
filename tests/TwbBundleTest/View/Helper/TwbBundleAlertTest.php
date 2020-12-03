@@ -1,38 +1,35 @@
 <?php
 namespace TwbBundleTest\View\Helper;
-class TwbBundleAlertTest extends \PHPUnit_Framework_TestCase{
-	/**
-	 * @var \TwbBundle\View\Helper\TwbBundleAlert
-	 */
-	protected $alertHelper;
+class TwbBundleAlertTest extends \PHPUnit\Framework\TestCase{
+    /**
+     * @var \TwbBundle\View\Helper\TwbBundleAlert
+     */
+    protected $alertHelper;
 
-	/**
-	 * @see \PHPUnit_Framework_TestCase::setUp()
-	 */
-	public function setUp(){
-		$oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-		$oRenderer = new \Laminas\View\Renderer\PhpRenderer();
-		$this->alertHelper = $oViewHelperPluginManager->get('alert')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
-	}
+    /**
+     * @see \PHPUnit\Framework\TestCase::setUp()
+     */
+    public function setUp(): void{
+        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
+        $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
+        $this->alertHelper = $oViewHelperPluginManager->get('alert')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
+    }
 
-	/**
-	 * @expectedException \InvalidArgumentException
-	 */
-	public function testRenderWithWrongTypeAttributes(){
-		$this->alertHelper->render('test',new \stdClass());
-	}
+    public function testRenderWithWrongTypeAttributes()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->alertHelper->render('test',new \stdClass());
+    }
 
-	/**
-	 * @expectedException \InvalidArgumentException
-	 */
-	public function testRenderWithEmptyClassAttributes(){
-		$this->alertHelper->render('test',array('class' => ''));
-	}
+    public function testRenderWithEmptyClassAttributes()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->alertHelper->render('test',array('class' => ''));
+    }
 
-	/**
-	 * @expectedException \InvalidArgumentException
-	 */
-	public function testRenderWithWrongTypeClassAttributes(){
-		$this->alertHelper->render('test',array('class' => new \stdClass()));
-	}
+    public function testRenderWithWrongTypeClassAttributes()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->alertHelper->render('test',array('class' => new \stdClass()));
+    }
 }

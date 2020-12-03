@@ -1,13 +1,13 @@
 {
-    "name": "neilime/zf2-twb-bundle",
+    "name": "thomasvargiu/laminas-twb-bundle",
     "type": "library",
-    "description": "Zend Framework 2 module for easy integration of Twitter Bootstrap",
+    "description": "Laminas module for easy integration of Twitter Bootstrap",
     "keywords": [
-        "Zend Framework 2",
+        "Laminas",
         "Twitter Bootstrap",
         "module"
     ],
-    "homepage": "http://neilime.github.io/zf2-twb-bundle/",
+    "homepage": "http://github.com/thomasvargiu/laminas-twb-bundle",
     "license": "MIT",
     "minimum-stability": "stable",
     "authors": [
@@ -15,17 +15,22 @@
             "name": "Neilime",
             "homepage": "https://github.com/neilime",
             "role": "Developer"
+        },
+        {
+            "name": "Thomas Vargiu",
+            "homepage": "https://github.com/thomasvargiu",
+            "role": "Developer"
         }
     ],
     "support": {
-        "issues": "https://github.com/neilime/zf2-twb-bundle/issues"
+        "issues": "https://github.com/thomasvargiu/laminas-twb-bundle/issues"
     },
     "suggest": {
         "neilime/zf2-assets-bundle": "Bundling & caching Twitter Bootstrap assets",
         "twitter/bootstrap": "Twitter bootstrap assets"
     },
     "require": {
-        "php": ">=5.3.2",
+        "php": "^7.2 || ^8.0",
         "laminas/laminas-config": "^2.3 || ^3.0",
         "laminas/laminas-escaper": "^2.3",
         "laminas/laminas-form": "^2.3",
@@ -39,10 +44,10 @@
         "laminas/laminas-stdlib": "^2.3 || ^3.1",
         "laminas/laminas-view": "^2.3",
         "laminas/laminas-navigation": "^2.9",
-        "laminas/laminas-dependency-plugin": "^1.0"
+        "laminas/laminas-dependency-plugin": "^2.1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8"
+        "phpunit/phpunit": "^9.4"
     },
     "autoload": {
         "psr-4": {
@@ -51,14 +56,18 @@
     },
     "scripts": {
         "test": "cd tests && phpunit --colors & cd ..",
-        "test:ci": "cd tests && phpunit -d max_execution_time=0 --coverage-text --coverage-clover ../build/logs/clover.xml --coverage-html ../build/coverage/ && cd .."
+        "test:ci": "cd tests && phpunit -d max_execution_time=0 --coverage-text --coverage-clover ../clover.xml && cd .."
     },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
         },
-        "zf": {
+        "laminas": {
+            "module": "TwbBundle",
             "config-provider": "TwbBundle\\ConfigProvider"
         }
+    },
+    "replace": {
+        "neilime/zf2-twb-bundle": "^3.0"
     }
 }

@@ -6,7 +6,7 @@ namespace TwbBundleTest;
  * Test glyphicons rendering
  * Based on http://getbootstrap.com/components/#glyphicons
  */
-class TwbBundleGlyphiconsTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleGlyphiconsTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @var string
@@ -24,9 +24,9 @@ class TwbBundleGlyphiconsTest extends \PHPUnit_Framework_TestCase {
     protected $formButtonHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp(): void {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-glyphicons' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
@@ -42,7 +42,7 @@ class TwbBundleGlyphiconsTest extends \PHPUnit_Framework_TestCase {
      * Test http://getbootstrap.com/components/#glyphicons-how-to-use
      */
     public function testHowToUse() {
-        $this->assertStringEqualsFile($this->expectedPath . 'how-to-use.phtml', $this->glyphiconHelper->__invoke('search'));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'how-to-use.phtml', $this->glyphiconHelper->__invoke('search'));
     }
 
     /**
@@ -79,7 +79,7 @@ class TwbBundleGlyphiconsTest extends \PHPUnit_Framework_TestCase {
         $oButton->setAttribute('class', 'btn-xs');
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
-        $this->assertStringEqualsFile($this->expectedPath . 'examples.phtml', $sContent);
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'examples.phtml', $sContent);
     }
 
     /**
@@ -89,7 +89,7 @@ class TwbBundleGlyphiconsTest extends \PHPUnit_Framework_TestCase {
      * @param boolean $bCanonicalize
      * @param boolean $bIgnoreCase
      */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
+    public static function twbAssertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
         return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }
 

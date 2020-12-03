@@ -6,7 +6,7 @@ namespace TwbBundleTest;
  * Test dropdowns rendering
  * Based on http://getbootstrap.com/components/#dropdowns
  */
-class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase
+class TwbBundleDropdownsTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -20,9 +20,9 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase
     protected $dropdownHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-dropdowns' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
@@ -44,7 +44,7 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase
         );
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'exemple.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'exemple.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
     }
 
     /**
@@ -61,7 +61,7 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase
         );
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'alignment.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'alignment.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
     }
 
     /**
@@ -84,7 +84,7 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase
         );
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'headers.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'headers.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
     }
 
     /**
@@ -105,7 +105,7 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase
         );
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'disabled.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'disabled.phtml', $this->dropdownHelper->__invoke($aDropDownOptions));
     }
 
     /**
@@ -115,7 +115,7 @@ class TwbBundleDropdownsTest extends \PHPUnit_Framework_TestCase
      * @param boolean $bCanonicalize
      * @param boolean $bIgnoreCase
      */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false)
+    public static function twbAssertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false)
     {
         return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }

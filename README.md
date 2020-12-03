@@ -1,13 +1,14 @@
 # TwbBundle - Laminas module
 
+Fork of (thomasvargiu/laminas-twb-bundle)[https://github.com/thomasvargiu/laminas-twb-bundle].
+
 __TwbBundle__ is a Laminas module for easy integration of the [Twitter Bootstrap v3](https://getbootstrap.com/docs/3.4/).
 
-[![License](https://img.shields.io/github/license/neilime/zf2-twb-bundle)](https://github.com/neilime/zf2-twb-bundle/blob/master/LICENSE)
-[![Build Status](https://travis-ci.org/neilime/zf2-twb-bundle.svg?branch=master)](https://travis-ci.org/neilime/zf2-twb-bundle)
-[![Coverage Status](https://coveralls.io/repos/github/neilime/zf2-twb-bundle/badge.svg)](https://coveralls.io/github/neilime/zf2-twb-bundle)
-[![Latest Stable Version](https://poser.pugx.org/neilime/zf2-twb-bundle/v/stable.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
-[![Total Downloads](https://poser.pugx.org/neilime/zf2-twb-bundle/downloads.png)](https://packagist.org/packages/neilime/zf2-twb-bundle)
-[![Sponsor](https://img.shields.io/badge/%E2%9D%A4-Sponsor-ff69b4)](https://github.com/sponsors/neilime)
+[![License](https://img.shields.io/github/license/thomasvargiu/laminas-twb-bundle)](https://github.com/thomasvargiu/laminas-twb-bundle/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/thomasvargiu/laminas-twb-bundle.svg?branch=master)](https://travis-ci.org/thomasvargiu/laminas-twb-bundle)
+[![Coverage Status](https://coveralls.io/repos/github/thomasvargiu/laminas-twb-bundle/badge.svg)](https://coveralls.io/github/thomasvargiu/laminas-twb-bundle)
+[![Latest Stable Version](https://poser.pugx.org/thomasvargiu/laminas-twb-bundle/v/stable.png)](https://packagist.org/packages/thomasvargiu/laminas-twb-bundle)
+[![Total Downloads](https://poser.pugx.org/thomasvargiu/laminas-twb-bundle/downloads.png)](https://packagist.org/packages/thomasvargiu/laminas-twb-bundle)
 
 ****
 
@@ -21,7 +22,7 @@ __⚠️ For Boostrap 4+, please use [zf-twbs-helper-module](https://github.com/
 
 # Contributing
 
-👍 If you wish to contribute to TwbsHelper, PRs are welcome! Please read the [https://github.com/neilime/zf2-twb-bundle/blob/master/CONTRIBUTING.md](CONTRIBUTING.md) file.
+👍 If you wish to contribute to TwbsHelper, PRs are welcome! Please read the [https://github.com/thomasvargiu/laminas-twb-bundle/blob/master/CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 # Demonstration / example
 
@@ -47,7 +48,7 @@ Name | Version
 
 # Documentation
 
-1. [Installation](https://github.com/neilime/zf2-twb-bundle/wiki/1.-Installation)
-2. [View Helpers](https://github.com/neilime/zf2-twb-bundle/wiki/2.-View-Helpers)
-3. [Elements](https://github.com/neilime/zf2-twb-bundle/wiki/3.-Elements)
-4. [Global Options](https://github.com/neilime/zf2-twb-bundle/wiki/4.-Global-Options)
+1. [Installation](https://github.com/thomasvargiu/laminas-twb-bundle/wiki/1.-Installation)
+2. [View Helpers](https://github.com/thomasvargiu/laminas-twb-bundle/wiki/2.-View-Helpers)
+3. [Elements](https://github.com/thomasvargiu/laminas-twb-bundle/wiki/3.-Elements)
+4. [Global Options](https://github.com/thomasvargiu/laminas-twb-bundle/wiki/4.-Global-Options)

@@ -1,17 +1,11 @@
 <?php
-/**
- * Project: zf2-twb-bundle, File: TwbBundleFontAwesomeTest.php
- * @author Michael Schakulat <michael@fetchit.de>
- * @package zf2-twb-bundle
- */
-
 namespace TwbBundleTest\View\Helper;
 
 use TwbBundle\View\Helper\TwbBundleFontAwesome;
 use TwbBundleTest\Bootstrap;
 use Laminas\View\Renderer\PhpRenderer;
 
-class TwbBundleFontAwesomeTest extends \PHPUnit_Framework_TestCase
+class TwbBundleFontAwesomeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var TwbBundleFontAwesome
@@ -19,9 +13,9 @@ class TwbBundleFontAwesomeTest extends \PHPUnit_Framework_TestCase
     protected $fontAwesomeHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp(): void {
         $oViewHelperPluginManager = Bootstrap::getServiceManager()
             ->get('ViewHelperManager');
         $oRenderer = new PhpRenderer();
@@ -37,10 +31,9 @@ class TwbBundleFontAwesomeTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testRenderWithWrongTypeFontAwesome() {
+    public function testRenderWithWrongTypeFontAwesome()
+    {
+        $this->expectException(\InvalidArgumentException::class);
         $this->fontAwesomeHelper->render(new \stdClass());
     }
 

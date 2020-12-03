@@ -2,7 +2,7 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TwbBundleFormRadioTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleFormRadioTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @var \TwbBundle\Form\View\Helper\TwbBundleFormRadio
@@ -10,9 +10,9 @@ class TwbBundleFormRadioTest extends \PHPUnit_Framework_TestCase {
     protected $formRadioHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp(): void {
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
         $this->formRadioHelper = $oViewHelperPluginManager->get('formRadio')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));

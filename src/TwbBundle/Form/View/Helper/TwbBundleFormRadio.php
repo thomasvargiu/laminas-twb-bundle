@@ -53,10 +53,10 @@ class TwbBundleFormRadio extends FormRadio
                 $buttonClass = $aElementOptions['btn-group']['btn-class'];
             }
 
-        	$this->setSeparator('');
-        	$oElement->setLabelAttributes(array('class' => $buttonClass));
+            $this->setSeparator('');
+            $oElement->setLabelAttributes(array('class' => $buttonClass));
 
-        	return sprintf('<div class="btn-group" data-toggle="buttons">%s</div>', parent::render($oElement));
+            return sprintf('<div class="btn-group" data-toggle="buttons">%s</div>', parent::render($oElement));
         }
 
         return sprintf(static::$checkboxFormat, parent::render($oElement));
@@ -124,9 +124,9 @@ class TwbBundleFormRadio extends FormRadio
             if ($sLabel) {
                 $aLabelAttributes = $aGlobalLabelAttributes;
                 if (isset($aElementOptions['btn-group']) && $aElementOptions['btn-group'] == true) {
-                	if ($aInputAttributes['checked']) {
-                		$aLabelAttributes['class'] = ((isset($aLabelAttributes['class'])) ? $aLabelAttributes['class'] : '') . ' active';
-                	}
+                    if ($aInputAttributes['checked']) {
+                        $aLabelAttributes['class'] = ((isset($aLabelAttributes['class'])) ? $aLabelAttributes['class'] : '') . ' active';
+                    }
                 }
 
                 if (isset($aOptionspec['label_attributes'])) {

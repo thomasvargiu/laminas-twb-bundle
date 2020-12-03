@@ -2,7 +2,7 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleFormCollectionTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @var \TwbBundle\Form\View\Helper\TwbBundleFormCollection
@@ -10,9 +10,9 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase {
     protected $formCollectionHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp(): void {
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
         $this->formCollectionHelper = $oViewHelperPluginManager->get('formCollection')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
@@ -68,7 +68,7 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase {
         $oForm = new \Laminas\Form\Form();
         $oForm->add($oCollection);
 
-        $this->assertStringEqualsFile(
+        $this->twbAssertStringEqualsFile(
                 __DIR__ . DIRECTORY_SEPARATOR . '../../../../_files/expected-fieldsets/inline-fieldset.html', $this->formCollectionHelper->__invoke($oForm->get('inline-collection'), false)
         );
     }
@@ -80,7 +80,7 @@ class TwbBundleFormCollectionTest extends \PHPUnit_Framework_TestCase {
      * @param boolean $bCanonicalize
      * @param boolean $bIgnoreCase
      */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
+    public static function twbAssertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
         return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }
 

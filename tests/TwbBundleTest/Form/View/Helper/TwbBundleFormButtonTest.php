@@ -2,7 +2,7 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase
+class TwbBundleFormButtonTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -11,20 +11,19 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase
     protected $formButtonHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp()
+    public function setUp(): void
     {
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
         $this->formButtonHelper = $oViewHelperPluginManager->get('formButton')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
 
-    /**
-     * @expectedException \DomainException
-     */
     public function testRenderElementWithEmptyButtonContentandLabel()
     {
+        $this->expectException(\DomainException::class);
+
         $this->formButtonHelper->render(new \Laminas\Form\Element(null, array('dropdown' => array('test'))));
     }
 
@@ -35,19 +34,16 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('<button name="test" class="test&#x20;btn&#x20;btn-default" type="submit" value="">test</button>', $this->formButtonHelper->render($oElement));
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testRenderWithWrongTypeGlyphiconOption()
     {
+        $this->expectException(\LogicException::class);
+
         $this->formButtonHelper->render(new \Laminas\Form\Element('test', array('glyphicon' => new \stdClass())));
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testRenderWithWrongTypeGlyphiconIconOption()
     {
+        $this->expectException(\LogicException::class);
         $this->formButtonHelper->render(new \Laminas\Form\Element('test', array('glyphicon' => array('icon' => new \stdClass()))));
     }
 
@@ -65,19 +61,15 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testRenderWithWrongTypeGlyphiconPositionOption()
     {
+        $this->expectException(\LogicException::class);
         $this->formButtonHelper->render(new \Laminas\Form\Element('test', array('glyphicon' => array('icon' => 'test', 'position' => new \stdClass()))));
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testRenderWithWrongGlyphiconPositionOption()
     {
+        $this->expectException(\LogicException::class);
         $this->formButtonHelper->render(new \Laminas\Form\Element('test', array('glyphicon' => array('icon' => 'test', 'position' => 'wrong'))));
     }
 
@@ -91,11 +83,9 @@ class TwbBundleFormButtonTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException \LogicException
-     */
     public function testRenderWithWrongTypeDropdownOption()
     {
+        $this->expectException(\LogicException::class);
         $this->formButtonHelper->render(new \Laminas\Form\Element('test', array('label' => 'test', 'dropdown' => new \stdClass())));
     }
 }

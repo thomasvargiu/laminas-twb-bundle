@@ -1,10 +1,4 @@
 <?php
-/**
- * Project: zf2-twb-bundle, File: TwbBundleFontAwesome.php
- * @author Michael Schakulat <michael@fetchit.de>
- * @package zf2-twb-bundle
- */
-
 namespace TwbBundle\View\Helper;
 
 use InvalidArgumentException;

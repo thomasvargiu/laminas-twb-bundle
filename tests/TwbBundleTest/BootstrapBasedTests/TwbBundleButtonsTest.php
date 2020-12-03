@@ -6,7 +6,7 @@ namespace TwbBundleTest;
  * Test buttons rendering
  * Based on http://getbootstrap.com/css/#buttons
  */
-class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleButtonsTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @var string
@@ -19,9 +19,9 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
     protected $formButtonHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp(): void {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-buttons' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
@@ -61,7 +61,7 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'options.phtml', $sContent);
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'options.phtml', $sContent);
     }
 
     /**
@@ -115,7 +115,7 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'sizes.phtml', $sContent);
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'sizes.phtml', $sContent);
     }
 
     /**
@@ -137,7 +137,7 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'active.phtml', $sContent);
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'active.phtml', $sContent);
     }
 
     /**
@@ -161,7 +161,7 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'disabled.phtml', $sContent);
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'disabled.phtml', $sContent);
     }
 
     /**
@@ -171,7 +171,7 @@ class TwbBundleButtonsTest extends \PHPUnit_Framework_TestCase {
      * @param boolean $bCanonicalize
      * @param boolean $bIgnoreCase
      */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
+    public static function twbAssertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
         return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }
 

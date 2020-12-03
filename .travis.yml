@@ -1,7 +1,3 @@
-env:
-  global:
-    secure: PN5YmqEfDtR0Egg06gImyKy9/bmjJB4bXnDBkU+0G8JI0Cd2ckkJgVIXi0FfzmS7PPv949TNaA5Gs11+HxvjqjFEnukj6+RFtPqNN8MjnhlWUeOmDh2dnn7SAhUGtBN+/gRPm093Jpo3UD/FDKy82H2f/0IbijPlqMNFWya+Yy0=
-
 language: php
 
 sudo: false
@@ -10,8 +6,8 @@ matrix:
   include:
   - php: '7.2'
   - php: '7.3'
-    env:
-    - EXECUTE_AFTER_SCRIPT=true
+  - php: '7.4'
+  - php: '8.0'
 
 cache:
   directories:
@@ -24,5 +20,3 @@ before_install:
 script:
 - composer test:ci
 
-after_script:
-- if [[ $EXECUTE_AFTER_SCRIPT == 'true' ]]; then bash <(curl -s https://gist.githubusercontent.com/neilime/769d733c52acdecea8d2548fb3aca3ff/raw/travis_ci_php_publish_build.sh);fi

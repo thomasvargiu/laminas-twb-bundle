@@ -2,7 +2,7 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleFormElementTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @var \TwbBundle\Form\View\Helper\TwbBundleFormElement
@@ -10,28 +10,26 @@ class TwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
     protected $formElementHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp(): void {
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
         $this->formElementHelper = $oViewHelperPluginManager->get('formElement')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testRenderAddOnWithEmptuOption() {
+    public function testRenderAddOnWithEmptuOption()
+    {
+        $this->expectException(\InvalidArgumentException::class);
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
         $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
         $oReflectionMethod->setAccessible(true);
         $oReflectionMethod->invoke($this->formElementHelper, '');
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testRenderAddOnWithWrongTypeOption() {
+    public function testRenderAddOnWithWrongTypeOption()
+    {
+        $this->expectException(\InvalidArgumentException::class);
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
         $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
         $oReflectionMethod->setAccessible(true);
@@ -67,20 +65,18 @@ class TwbBundleFormElementTest extends \PHPUnit_Framework_TestCase {
         );
     }
 
-    /**
-     * @expectedException \LogicException
-     */
-    public function testRenderAddOnWithWrongTypeElement() {
+    public function testRenderAddOnWithWrongTypeElement()
+    {
+        $this->expectException(\LogicException::class);
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
         $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
         $oReflectionMethod->setAccessible(true);
         $oReflectionMethod->invoke($this->formElementHelper, array('element' => new \stdClass()));
     }
 
-    /**
-     * @expectedException \LogicException
-     */
-    public function testRenderAddOnWithWrongTypeText() {
+    public function testRenderAddOnWithWrongTypeText()
+    {
+        $this->expectException(\LogicException::class);
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormElement');
         $oReflectionMethod = $oReflectionClass->getMethod('renderAddOn');
         $oReflectionMethod->setAccessible(true);

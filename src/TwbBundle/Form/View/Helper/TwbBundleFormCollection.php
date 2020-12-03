@@ -56,15 +56,15 @@ class TwbBundleFormCollection extends FormCollection
                 if ($oElementOrFieldset instanceof \Laminas\Form\FieldsetInterface) {
                     $sMarkup .= $oFieldsetHelper($oElementOrFieldset);
                 } elseif ($oElementOrFieldset instanceof \Laminas\Form\ElementInterface) {
-                	if ($oElementOrFieldset->getOption('twb-row-open')) {
-						$sMarkup .= '<div class="row">' . "\n";
-					}
+                    if ($oElementOrFieldset->getOption('twb-row-open')) {
+                        $sMarkup .= '<div class="row">' . "\n";
+                    }
 
-					$sMarkup .= $oElementHelper($oElementOrFieldset);
+                    $sMarkup .= $oElementHelper($oElementOrFieldset);
 
-					if ($oElementOrFieldset->getOption('twb-row-close')) {
-						$sMarkup .= '</div>' . "\n";
-					}
+                    if ($oElementOrFieldset->getOption('twb-row-close')) {
+                        $sMarkup .= '</div>' . "\n";
+                    }
                 }
             }
             if ($oElement instanceof \Laminas\Form\Element\Collection && $oElement->shouldCreateTemplate()) {

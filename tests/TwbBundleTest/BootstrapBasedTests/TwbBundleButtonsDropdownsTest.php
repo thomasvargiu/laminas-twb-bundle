@@ -6,7 +6,7 @@ namespace TwbBundleTest;
  * Test buttons dropdowns rendering
  * Based on http://getbootstrap.com/components/#btn-dropdowns
  */
-class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleButtonsDropdownsTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @var string
@@ -19,9 +19,9 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
     protected $formButtonHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp(): void {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-buttons-dropdowns' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
@@ -61,7 +61,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-single.phtml', $sContent);
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'dropdowns-single.phtml', $sContent);
     }
 
     /**
@@ -99,7 +99,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-split.phtml', $sContent);
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'dropdowns-split.phtml', $sContent);
     }
 
     /**
@@ -128,7 +128,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'dropdowns-sizing.phtml', $sContent);
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'dropdowns-sizing.phtml', $sContent);
     }
 
     /**
@@ -152,7 +152,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= $this->formButtonHelper->__invoke($oButton) . "\n";
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'dropup.phtml', $sContent);
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'dropup.phtml', $sContent);
     }
 
     /**
@@ -162,7 +162,7 @@ class TwbBundleButtonsDropdownsTest extends \PHPUnit_Framework_TestCase {
      * @param boolean $bCanonicalize
      * @param boolean $bIgnoreCase
      */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
+    public static function twbAssertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
         return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }
 

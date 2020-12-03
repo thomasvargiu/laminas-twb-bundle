@@ -2,7 +2,7 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleFormErrorsTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * Contains an instance of TwbBundleFormErrors.
@@ -10,7 +10,7 @@ class TwbBundleFormErrorsTest extends \PHPUnit_Framework_TestCase {
      */
     protected $formErrorsHelper = null;
 
-    public function setUp() {
+    public function setUp(): void {
         $this->getFormErrorsHelper();
     }
 

@@ -1,38 +1,35 @@
 <?php
 namespace TwbBundleTest\View\Helper;
-class TwbBundleLabelTest extends \PHPUnit_Framework_TestCase{
-	/**
-	 * @var \TwbBundle\View\Helper\TwbBundleLabel
-	 */
-	protected $labelHelper;
+class TwbBundleLabelTest extends \PHPUnit\Framework\TestCase{
+    /**
+     * @var \TwbBundle\View\Helper\TwbBundleLabel
+     */
+    protected $labelHelper;
 
-	/**
-	 * @see \PHPUnit_Framework_TestCase::setUp()
-	 */
-	public function setUp(){
-		$oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
-		$oRenderer = new \Laminas\View\Renderer\PhpRenderer();
-		$this->labelHelper = $oViewHelperPluginManager->get('label')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
-	}
+    /**
+     * @see \PHPUnit\Framework\TestCase::setUp()
+     */
+    public function setUp(): void{
+        $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
+        $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
+        $this->labelHelper = $oViewHelperPluginManager->get('label')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
+    }
 
-	/**
-	 * @expectedException \InvalidArgumentException
-	 */
-	public function testRenderWithWrongTypeAttributes(){
-		$this->labelHelper->render('test',new \stdClass());
-	}
+    public function testRenderWithWrongTypeAttributes()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->labelHelper->render('test',new \stdClass());
+    }
 
-	/**
-	 * @expectedException \InvalidArgumentException
-	 */
-	public function testRenderWithEmptyClassAttributes(){
-		$this->labelHelper->render('test',array('class' => ''));
-	}
+    public function testRenderWithEmptyClassAttributes()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->labelHelper->render('test',array('class' => ''));
+    }
 
-	/**
-	 * @expectedException \InvalidArgumentException
-	 */
-	public function testRenderWithWrongTypeClassAttributes(){
-		$this->labelHelper->render('test',array('class' => new \stdClass()));
-	}
+    public function testRenderWithWrongTypeClassAttributes()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->labelHelper->render('test',array('class' => new \stdClass()));
+    }
 }

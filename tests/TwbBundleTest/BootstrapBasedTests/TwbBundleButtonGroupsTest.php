@@ -6,7 +6,7 @@ namespace TwbBundleTest;
  * Test button groups rendering
  * Based on http://getbootstrap.com/components/#btn-groups
  */
-class TwbBundleButtonGroupsTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleButtonGroupsTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @var string
@@ -19,9 +19,9 @@ class TwbBundleButtonGroupsTest extends \PHPUnit_Framework_TestCase {
     protected $buttonGroupHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp(): void {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../_files/expected-button-groups' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
@@ -33,7 +33,7 @@ class TwbBundleButtonGroupsTest extends \PHPUnit_Framework_TestCase {
      */
     public function testBasicExemple() {
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'single.phtml', $this->buttonGroupHelper->__invoke(array(
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'single.phtml', $this->buttonGroupHelper->__invoke(array(
                     new \Laminas\Form\Element\Button('left', array('label' => 'Left')),
                     new \Laminas\Form\Element\Button('middle', array('label' => 'Middle')),
                     new \Laminas\Form\Element\Button('right', array('label' => 'Right')),
@@ -70,7 +70,7 @@ class TwbBundleButtonGroupsTest extends \PHPUnit_Framework_TestCase {
         $sContent .= '</div>';
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'toolbar.phtml', $sContent);
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'toolbar.phtml', $sContent);
     }
 
     /**
@@ -109,7 +109,7 @@ class TwbBundleButtonGroupsTest extends \PHPUnit_Framework_TestCase {
                         ), array('attributes' => array('class' => 'btn-group-xs'))) . '</div>';
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'sizing.phtml', $sContent);
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'sizing.phtml', $sContent);
     }
 
     /**
@@ -117,7 +117,7 @@ class TwbBundleButtonGroupsTest extends \PHPUnit_Framework_TestCase {
      */
     public function testNesting() {
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'nested.phtml', $this->buttonGroupHelper->__invoke(array(
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'nested.phtml', $this->buttonGroupHelper->__invoke(array(
                     new \Laminas\Form\Element\Button('1', array('label' => '1')),
                     new \Laminas\Form\Element\Button('2', array('label' => '2')),
                     new \Laminas\Form\Element\Button('dropdown', array('label' => 'Dropdown', 'dropdown' => array('items' => array('Dropdown link', 'Dropdown link'))))
@@ -129,7 +129,7 @@ class TwbBundleButtonGroupsTest extends \PHPUnit_Framework_TestCase {
      */
     public function testVerticalVariation() {
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'vertical.phtml', $this->buttonGroupHelper->__invoke(array(
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'vertical.phtml', $this->buttonGroupHelper->__invoke(array(
                     new \Laminas\Form\Element\Button('button', array('label' => 'Button')),
                     new \Laminas\Form\Element\Button('button', array('label' => 'Button')),
                     new \Laminas\Form\Element\Button('dropdown', array('label' => 'Dropdown', 'dropdown' => array('items' => array('Dropdown link', 'Dropdown link')))),
@@ -146,7 +146,7 @@ class TwbBundleButtonGroupsTest extends \PHPUnit_Framework_TestCase {
      */
     public function testJustifiedButtonGroups() {
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'justified.phtml', $this->buttonGroupHelper->__invoke(array(
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'justified.phtml', $this->buttonGroupHelper->__invoke(array(
                     new \Laminas\Form\Element\Button('left', array('label' => 'Left')),
                     new \Laminas\Form\Element\Button('middle', array('label' => 'Middle')),
                     new \Laminas\Form\Element\Button('right', array('label' => 'Right')),
@@ -160,7 +160,7 @@ class TwbBundleButtonGroupsTest extends \PHPUnit_Framework_TestCase {
      * @param boolean $bCanonicalize
      * @param boolean $bIgnoreCase
      */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
+    public static function twbAssertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false) {
         file_put_contents($sExpectedFile, $sActualString);
         return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }

@@ -2,7 +2,7 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TwbBundleFormCheckboxTest extends \PHPUnit_Framework_TestCase {
+class TwbBundleFormCheckboxTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * @var \TwbBundle\Form\View\Helper\TwbBundleFormCheckbox
@@ -10,25 +10,23 @@ class TwbBundleFormCheckboxTest extends \PHPUnit_Framework_TestCase {
     protected $formCheckboxHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp() {
+    public function setUp(): void {
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
         $this->formCheckboxHelper = $oViewHelperPluginManager->get('formCheckbox')->setView($oRenderer->setHelperPluginManager($oViewHelperPluginManager));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testRenderElementWithWrongElement() {
+    public function testRenderElementWithWrongElement()
+    {
+        $this->expectException(\InvalidArgumentException::class);
         $this->formCheckboxHelper->render(new \Laminas\Form\Element());
     }
 
-    /**
-     * @expectedException \LogicException
-     */
-    public function testRenderElementWithEmptyName() {
+    public function testRenderElementWithEmptyName()
+    {
+        $this->expectException(\LogicException::class);
         $this->formCheckboxHelper->render(new \Laminas\Form\Element\Checkbox(''));
     }
 

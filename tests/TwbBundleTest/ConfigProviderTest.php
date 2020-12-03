@@ -8,7 +8,7 @@ use TwbBundle\ConfigProvider;
  *
  * @package TwbBundleTest
  */
-class ConfigProviderTest extends \PHPUnit_Framework_TestCase
+class ConfigProviderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * The zend-component config provider
@@ -18,9 +18,9 @@ class ConfigProviderTest extends \PHPUnit_Framework_TestCase
     protected $configProvider;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->configProvider = new ConfigProvider();
     }

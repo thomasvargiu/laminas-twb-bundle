@@ -2,7 +2,7 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
+class TwbBundleFormRowTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -16,9 +16,9 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
     protected $formRowHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->expectedPath = __DIR__ . DIRECTORY_SEPARATOR . '../../../../_files/expected-rows' . DIRECTORY_SEPARATOR;
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
@@ -33,7 +33,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         $this->formRowHelper->setPartial('partial-row');
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'partial.phtml', $this->formRowHelper->render(new \Laminas\Form\Element('test-element')));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'partial.phtml', $this->formRowHelper->render(new \Laminas\Form\Element('test-element')));
     }
 
     public function testRenderAddOnWithValidationStateAndDefinedLabelClass()
@@ -48,7 +48,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
                 ->setLabelAttributes(array('class' => 'test-label-class'));
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'add-on-validation-states.phtml', $oReflectionMethod->invoke($this->formRowHelper, $oElement));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'add-on-validation-states.phtml', $oReflectionMethod->invoke($this->formRowHelper, $oElement));
     }
 
     public function testRenderAddOnWithInlineLayoutAndDefinedLabelClass()
@@ -63,7 +63,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
                 ->setLabelAttributes(array('class' => 'test-label-class'));
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'add-on-inline-layout.phtml', $oReflectionMethod->invoke($this->formRowHelper, $oElement));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'add-on-inline-layout.phtml', $oReflectionMethod->invoke($this->formRowHelper, $oElement));
     }
 
     public function testRenderAddOnWithHorizontalLayoutAndDefinedLabelClass()
@@ -78,14 +78,12 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
                 ->setLabelAttributes(array('class' => 'test-label-class'));
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'add-on-horizontal-layout.phtml', $oReflectionMethod->invoke($this->formRowHelper, $oElement));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'add-on-horizontal-layout.phtml', $oReflectionMethod->invoke($this->formRowHelper, $oElement));
     }
 
-    /**
-     * @expectedException \DomainException
-     */
     public function testRenderAddOnWithWrongLayout()
     {
+        $this->expectException(\DomainException::class);
         $oReflectionClass = new \ReflectionClass('\TwbBundle\Form\View\Helper\TwbBundleFormRow');
         $oReflectionMethod = $oReflectionClass->getMethod('renderElement');
         $oReflectionMethod->setAccessible(true);
@@ -103,7 +101,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         ));
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'errors-input-errors-class.phtml', $this->formRowHelper->__invoke($oElement));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'errors-input-errors-class.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
     public function testRenderErrorsWithoutInputErrorClass()
@@ -116,7 +114,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         ));
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'errors-without-input-errors-class.phtml', $this->formRowHelper->__invoke($oElement));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'errors-without-input-errors-class.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
     public function testRenderHiddenElement()
@@ -129,7 +127,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         );
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'hidden-element.phtml', $this->formRowHelper->__invoke($oElement));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'hidden-element.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
     public function testRendeCheckboxWithDefinedLabelAttributes()
@@ -140,7 +138,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         $this->formRowHelper->setLabelAttributes(array('class' => 'test-class'));
 
         //Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'checkbox-defined-label-attributes.phtml', $this->formRowHelper->__invoke($oElement));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'checkbox-defined-label-attributes.phtml', $this->formRowHelper->__invoke($oElement));
 
         // Restore original label attributes
         $this->formRowHelper->setLabelAttributes($aLabelAttributes);
@@ -160,7 +158,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         ));
 
         // Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'radio-horizontal-layout.phtml', $this->formRowHelper->__invoke($oElement));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'radio-horizontal-layout.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
     public function testRenderFormRowWithSpecificClass()
@@ -173,7 +171,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         ));
 
         // Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'row-class.phtml', $this->formRowHelper->__invoke($oElement));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'row-class.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
     public function testRenderInputWithHelpTextAndError()
@@ -184,7 +182,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
         ));
         $oElement->setMessages(array('Error message'));
         // Test content
-        $this->assertStringEqualsFile($this->expectedPath . 'input-with-help-text-and-error.phtml', $this->formRowHelper->__invoke($oElement));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'input-with-help-text-and-error.phtml', $this->formRowHelper->__invoke($oElement));
     }
 
     public function testRenderWithBothInlineAndNoInlineRadios() {
@@ -207,7 +205,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
             ),
         ));
 
-        $this->assertStringEqualsFile($this->expectedPath . 'both-inline-and-no-inline-radios.phtml', $this->formRowHelper->__invoke($oForm->get('optInput1')).$this->formRowHelper->__invoke($oForm->get('optInput2')));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'both-inline-and-no-inline-radios.phtml', $this->formRowHelper->__invoke($oForm->get('optInput1')).$this->formRowHelper->__invoke($oForm->get('optInput2')));
     }
 
     public function testAllowsFeedbackInTextField(){
@@ -221,7 +219,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
             ),
         ));
 
-        $this->assertStringEqualsFile($this->expectedPath . 'has-feedback-in-textfield.phtml', $this->formRowHelper->__invoke($oForm->get('username')));
+        $this->twbAssertStringEqualsFile($this->expectedPath . 'has-feedback-in-textfield.phtml', $this->formRowHelper->__invoke($oForm->get('username')));
     }
 
     /**
@@ -231,7 +229,7 @@ class TwbBundleFormRowTest extends \PHPUnit_Framework_TestCase
      * @param boolean $bCanonicalize
      * @param boolean $bIgnoreCase
      */
-    public static function assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false)
+    public static function twbAssertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false)
     {
         return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }

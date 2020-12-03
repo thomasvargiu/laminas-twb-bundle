@@ -2,7 +2,7 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TwbBundleFormTest extends \PHPUnit_Framework_TestCase
+class TwbBundleFormTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -11,9 +11,9 @@ class TwbBundleFormTest extends \PHPUnit_Framework_TestCase
     protected $formHelper;
 
     /**
-     * @see \PHPUnit_Framework_TestCase::setUp()
+     * @see \PHPUnit\Framework\TestCase::setUp()
      */
-    public function setUp()
+    public function setUp(): void
     {
         $oViewHelperPluginManager = \TwbBundleTest\Bootstrap::getServiceManager()->get('ViewHelperManager');
         $oRenderer = new \Laminas\View\Renderer\PhpRenderer();
