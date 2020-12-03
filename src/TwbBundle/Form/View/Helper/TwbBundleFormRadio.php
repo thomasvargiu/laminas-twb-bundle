@@ -101,7 +101,7 @@ class TwbBundleFormRadio extends FormRadio
             $aInputAttributes['value'] = isset($aOptionspec['value']) ? $aOptionspec['value'] : '';
 
             //Selected option
-            if (in_array($aInputAttributes['value'], $aSelectedOptions)) {
+            if (in_array($aInputAttributes['value'], $aSelectedOptions, true)) {
                 $aInputAttributes['checked'] = true;
             } elseif (isset($aOptionspec['selected'])) {
                 $aInputAttributes['checked'] = !!$aOptionspec['selected'];
