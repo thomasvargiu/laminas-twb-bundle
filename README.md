@@ -1,6 +1,6 @@
 # TwbBundle - Laminas module
 
-Fork of (thomasvargiu/laminas-twb-bundle)[https://github.com/thomasvargiu/laminas-twb-bundle].
+Fork of (neilime/zf2-twb-bundle)[https://github.com/neilime/zf2-twb-bundle] updated for Laminas.
 
 __TwbBundle__ is a Laminas module for easy integration of the [Twitter Bootstrap v3](https://getbootstrap.com/docs/3.4/).
 
