@@ -15,24 +15,24 @@ class TwbBundleFormErrors extends AbstractHelper
 
     /**
      * Invoke as function
-     * @param \Laminas\Form\FormInterface $oForm
-     * @param string $sMessage
-     * @param string $bDismissable
-     * @return string|null
+     * @param \Laminas\Form\FormInterface $form
+     * @param string $message
+     * @param string $dismissable
+     * @return string|self|null
      */
-    public function __invoke(FormInterface $oForm = null, $sMessage = null, $bDismissable = false)
+    public function __invoke(FormInterface $form = null, $message = null, $dismissable = false)
     {
-        if (!$oForm) {
+        if (!$form) {
             return $this;
         }
 
-        if (!$sMessage) {
-            $sMessage = $this->defaultErrorText;
+        if (!$message) {
+            $message = $this->defaultErrorText;
         }
 
-        if ($oForm->hasValidated() && !$oForm->isValid()) {
+        if ($form->hasValidated() && !$form->isValid()) {
 
-            return $this->render($oForm, $sMessage, $bDismissable);
+            return $this->render($form, $message, $dismissable);
         }
 
         return null;

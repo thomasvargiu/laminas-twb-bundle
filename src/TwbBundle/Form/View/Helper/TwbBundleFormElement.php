@@ -83,7 +83,7 @@ class TwbBundleFormElement extends FormElement implements TranslatorAwareInterfa
      * @param ElementInterface $oElement
      * @return string
      */
-    public function render(ElementInterface $oElement)
+    public function render(ElementInterface $oElement): string
     {
         // Add form-controll class
         $sElementType = $oElement->getAttribute('type');

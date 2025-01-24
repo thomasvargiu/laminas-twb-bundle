@@ -22,60 +22,57 @@ class TwbBundleForm extends Form
     /**
      * @var string
      */
-    protected static $formRowFormat = '<div class="row">%s</div>';
+    protected static string $formRowFormat = '<div class="row">%s</div>';
 
     /**
      * Form layout (see LAYOUT_* consts)
      *
-     * @var string
+     * @var null|string
      */
-    protected $formLayout = null;
+    protected ?string $formLayout = null;
 
     /**
-     * @see Form::__invoke()
-     * @param FormInterface $oForm
-     * @param string $sFormLayout
+     * @param FormInterface $form
      * @return TwbBundleForm|string
+     *@see Form::__invoke()
      */
-    public function __invoke(FormInterface $oForm = null, $sFormLayout = self::LAYOUT_HORIZONTAL)
+    public function __invoke(FormInterface $form = null, ?string $formLayout = self::LAYOUT_HORIZONTAL)
     {
-        if ($oForm) {
-            return $this->render($oForm, $sFormLayout);
+        if ($form) {
+            return $this->render($form, $formLayout);
         }
-        $this->formLayout = $sFormLayout;
+        $this->formLayout = $formLayout;
         return $this;
     }
 
     /**
      * Render a form from the provided $oForm,
-     * @see Form::render()
-     * @param FormInterface $oForm
-     * @param string $sFormLayout
+     * @param FormInterface $form
      * @return string
+     * @see Form::render()
      */
-    public function render(FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL)
+    public function render(FormInterface $form, ?string $formLayout = self::LAYOUT_HORIZONTAL): string
     {
         //Prepare form if needed
-        if (method_exists($oForm, 'prepare')) {
-            $oForm->prepare();
+        if (method_exists($form, 'prepare')) {
+            $form->prepare();
         }
 
-        $this->setFormClass($oForm, $sFormLayout);
+        $this->setFormClass($form, $formLayout);
 
         //Set form role
-        if (!$oForm->getAttribute('role')) {
-            $oForm->setAttribute('role', 'form');
+        if (!$form->getAttribute('role')) {
+            $form->setAttribute('role', 'form');
         }
 
-        return $this->openTag($oForm) . "\n" . $this->renderElements($oForm, $sFormLayout) . $this->closeTag();
+        return $this->openTag($form) . "\n" . $this->renderElements($form, $formLayout) . $this->closeTag();
     }
 
     /**
      * @param FormInterface $oForm
-     * @param string|null $sFormLayout
      * @return string
      */
-    protected function renderElements(FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL)
+    protected function renderElements(FormInterface $oForm, ?string $formLayout = self::LAYOUT_HORIZONTAL): string
     {
         // Store button groups
         $aButtonGroups = array();
@@ -108,8 +105,8 @@ class TwbBundleForm extends Form
                 $bHasColumnSize = true;
             }
             // Define layout option to form elements if not already defined
-            if ($sFormLayout && empty($aOptions['twb-layout'])) {
-                $oElement->setOption('twb-layout', $sFormLayout);
+            if ($formLayout && empty($aOptions['twb-layout'])) {
+                $oElement->setOption('twb-layout', $formLayout);
             }
 
             // Manage button group option
@@ -147,7 +144,7 @@ class TwbBundleForm extends Form
             }
         }
 
-        if ($bHasColumnSize && $sFormLayout !== self::LAYOUT_HORIZONTAL) {
+        if ($bHasColumnSize && $formLayout !== self::LAYOUT_HORIZONTAL) {
             $sFormContent = sprintf(static::$formRowFormat, $sFormContent);
         }
         return $sFormContent;
@@ -155,22 +152,22 @@ class TwbBundleForm extends Form
 
     /**
      * Sets form layout class
-     * @param FormInterface $oForm
-     * @param string $sFormLayout
+     * @param FormInterface $form
      * @return \TwbBundle\Form\View\Helper\TwbBundleForm
      */
-    protected function setFormClass(FormInterface $oForm, $sFormLayout = self::LAYOUT_HORIZONTAL)
+    protected function setFormClass(FormInterface $form, ?string $formLayout = self::LAYOUT_HORIZONTAL): self
     {
-        if (is_string($sFormLayout)) {
-            $sLayoutClass = 'form-' . $sFormLayout;
-            if ($sFormClass = $oForm->getAttribute('class')) {
-                if (!preg_match('/(\s|^)' . preg_quote($sLayoutClass, '/') . '(\s|$)/', $sFormClass)) {
-                    $oForm->setAttribute('class', trim($sFormClass . ' ' . $sLayoutClass));
+        if ($formLayout) {
+            $layoutClass = 'form-' . $formLayout;
+            if ($sFormClass = $form->getAttribute('class')) {
+                if (!preg_match('/(\s|^)' . preg_quote($layoutClass, '/') . '(\s|$)/', $sFormClass)) {
+                    $form->setAttribute('class', trim($sFormClass . ' ' . $layoutClass));
                 }
             } else {
-                $oForm->setAttribute('class', $sLayoutClass);
+                $form->setAttribute('class', $layoutClass);
             }
         }
+
         return $this;
     }
 
@@ -179,7 +176,7 @@ class TwbBundleForm extends Form
      * @param null|FormInterface $form
      * @return string
      */
-    public function openTag(FormInterface $form = null)
+    public function openTag(FormInterface $form = null): string
     {
         $this->setFormClass($form, $this->formLayout);
         return parent::openTag($form);

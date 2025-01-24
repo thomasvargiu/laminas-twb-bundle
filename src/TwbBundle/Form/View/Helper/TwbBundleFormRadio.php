@@ -25,7 +25,7 @@ class TwbBundleFormRadio extends FormRadio
      * @param \Laminas\Form\ElementInterface $oElement
      * @return string
      */
-    public function render(ElementInterface $oElement)
+    public function render(ElementInterface $oElement): string
     {
         $aElementOptions = $oElement->getOptions();
 
@@ -75,7 +75,7 @@ class TwbBundleFormRadio extends FormRadio
         array $aOptions,
         array $aSelectedOptions,
         array $aAttributes
-    ) {
+    ): string {
         $iIterator = 0;
         $aGlobalLabelAttributes = $oElement->getLabelAttributes()? : $this->labelAttributes;
         $sMarkup = '';

@@ -2,17 +2,24 @@
 
 namespace TwbBundleTest;
 
+use PHPUnit\Framework\Constraint\IsEqual;
+
 /**
  * Test forms rendering
  * Based on http://getbootstrap.com/css/#forms
  */
-class TwbBundleFormsTest extends \PHPUnit\Framework\TestCase
+class TwbBundleFormsTest extends TestCase
 {
 
     /**
      * @var string
      */
     protected $expectedPath;
+
+    /**
+     * @var string[]
+     */
+    protected array $expectedPaths;
 
     /**
      * @var \TwbBundle\Form\View\Helper\TwbBundleForm
@@ -549,17 +556,5 @@ class TwbBundleFormsTest extends \PHPUnit\Framework\TestCase
 
         // Test content
         $this->twbAssertStringEqualsFile($this->expectedPath . 'forms-button-groups.phtml', $this->formHelper->__invoke($oForm));
-    }
-
-    /**
-     * @param string $sExpectedFile
-     * @param string $sActualString
-     * @param string $sMessage
-     * @param boolean $bCanonicalize
-     * @param boolean $bIgnoreCase
-     */
-    public static function twbAssertStringEqualsFile($sExpectedFile, $sActualString, $sMessage = '', $bCanonicalize = false, $bIgnoreCase = false)
-    {
-        return parent::assertStringEqualsFile($sExpectedFile, $sActualString, $sMessage, $bCanonicalize, $bIgnoreCase);
     }
 }

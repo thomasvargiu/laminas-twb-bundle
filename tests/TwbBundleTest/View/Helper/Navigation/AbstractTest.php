@@ -26,6 +26,8 @@ use Laminas\View\Renderer\PhpRenderer;
  */
 abstract class AbstractTest extends TestCase
 {
+    protected string $routeMatchType = V3RouteMatch::class;
+
     /**
      * @var ServiceManager
      */

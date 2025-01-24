@@ -7,21 +7,23 @@ use LogicException;
 use Laminas\Form\View\Helper\AbstractHelper;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Factory;
+use TwbBundle\Form\View\Helper\TwbBundleFormElement;
+use TwbBundle\Options\ModuleOptions;
 
 class TwbBundleButtonGroup extends AbstractHelper
 {
     /**
      * @var string
      */
-    protected static $buttonGroupContainerFormat = '<div %s>%s</div>';
+    protected static string $buttonGroupContainerFormat = '<div %s>%s</div>';
 
     /**
      * @var string
      */
-    protected static $buttonGroupJustifiedFormat = '<div class="btn-group">%s</div>';
+    protected static string $buttonGroupJustifiedFormat = '<div class="btn-group">%s</div>';
 
     /**
-     * @var TwbBundleFormElement
+     * @var null|TwbBundleFormElement
      */
     protected $formElementHelper;
 
@@ -115,6 +117,6 @@ class TwbBundleButtonGroup extends AbstractHelper
             return $this->formElementHelper = $this->view->plugin('form_element');
         }
 
-        return $this->formElementHelper = new TwbBundleFormElement();
+        return $this->formElementHelper = new TwbBundleFormElement(new ModuleOptions());
     }
 }

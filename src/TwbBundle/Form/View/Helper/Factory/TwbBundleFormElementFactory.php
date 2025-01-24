@@ -2,10 +2,10 @@
 namespace TwbBundle\Form\View\Helper\Factory;
 
 use Laminas\ServiceManager\AbstractPluginManager;
-use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use TwbBundle\Form\View\Helper\TwbBundleFormElement;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Factory to inject the ModuleOptions hard dependency

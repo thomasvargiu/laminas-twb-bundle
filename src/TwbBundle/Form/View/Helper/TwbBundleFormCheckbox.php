@@ -26,7 +26,7 @@ class TwbBundleFormCheckbox extends FormCheckbox
      * @throws InvalidArgumentException
      * @return string
      */
-    public function render(ElementInterface $oElement)
+    public function render(ElementInterface $oElement): string
     {
         if ($oElement->getOption('disable-twb')) {
             return parent::render($oElement);

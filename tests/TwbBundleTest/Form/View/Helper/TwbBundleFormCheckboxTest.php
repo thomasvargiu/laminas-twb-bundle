@@ -2,7 +2,9 @@
 
 namespace TwbBundleTest\Form\View\Helper;
 
-class TwbBundleFormCheckboxTest extends \PHPUnit\Framework\TestCase {
+use TwbBundleTest\TestCase;
+
+class TwbBundleFormCheckboxTest extends TestCase {
 
     /**
      * @var \TwbBundle\Form\View\Helper\TwbBundleFormCheckbox
@@ -31,7 +33,7 @@ class TwbBundleFormCheckboxTest extends \PHPUnit\Framework\TestCase {
     }
 
     public function testRenderWithLabelPrepend() {
-        $this->assertEquals('<input type="hidden" name="prepend" value="0"><label>Prepend label <input type="checkbox" name="prepend" value="1"></label>', $this->formCheckboxHelper->render(new \Laminas\Form\Element\Checkbox('prepend', array(
+        $this->twbAssertStringEquals('<input type="hidden" name="prepend" value="0"><label>Prepend label <input type="checkbox" name="prepend" value="1"></label>', $this->formCheckboxHelper->render(new \Laminas\Form\Element\Checkbox('prepend', array(
                     'label' => 'Prepend label',
                     'label_options' => array('position' => \Laminas\Form\View\Helper\FormRow::LABEL_PREPEND)
         ))));
@@ -40,7 +42,7 @@ class TwbBundleFormCheckboxTest extends \PHPUnit\Framework\TestCase {
     public function testRenderWithCheckedElement() {
         $oCheckbox = new \Laminas\Form\Element\Checkbox('checked');
         $oCheckbox->setChecked(true);
-        $this->assertEquals('<input type="hidden" name="checked" value="0"><input type="checkbox" name="checked" value="1" checked="checked">', $this->formCheckboxHelper->render($oCheckbox));
+        $this->twbAssertStringEquals('<input type="hidden" name="checked" value="0"><input type="checkbox" name="checked" value="1" checked="checked">', $this->formCheckboxHelper->render($oCheckbox));
     }
 
 }

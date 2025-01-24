@@ -2,7 +2,7 @@
 
 namespace TwbBundle\Navigation\View;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use ReflectionProperty;
 use TwbBundle\View\Helper\Navigation as NavigationHelper;
 

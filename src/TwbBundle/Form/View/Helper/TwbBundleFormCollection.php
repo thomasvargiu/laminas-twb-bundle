@@ -28,10 +28,10 @@ class TwbBundleFormCollection extends FormCollection
 
     /**
      * Render a collection by iterating through all fieldsets and elements
-     * @param \Laminas\Form\ElementInterface $oElement
+     * @param \Laminas\Form\ElementInterface $element
      * @return string
      */
-    public function render(ElementInterface $oElement)
+    public function render(ElementInterface $element): string
     {
         $oRenderer = $this->getView();
         if (!method_exists($oRenderer, 'plugin')) {
@@ -40,66 +40,69 @@ class TwbBundleFormCollection extends FormCollection
 
         $bShouldWrap = $this->shouldWrap;
 
-        $sMarkup = '';
-        $sElementLayout = $oElement->getOption('twb-layout');
-        if ($oElement instanceof \IteratorAggregate) {
-            $oElementHelper = $this->getElementHelper();
-            $oFieldsetHelper = $this->getFieldsetHelper();
+        $markup = '';
+        $elementLayout = $element->getOption('twb-layout');
 
-            foreach ($oElement->getIterator() as $oElementOrFieldset) {
-                $aOptions = $oElementOrFieldset->getOptions();
-                if ($sElementLayout && empty($aOptions['twb-layout'])) {
-                    $aOptions['twb-layout'] = $sElementLayout;
-                    $oElementOrFieldset->setOptions($aOptions);
+        $elementHelper = $this->getElementHelper();
+        $fieldsetHelper = $this->getFieldsetHelper();
+
+        if (!is_callable($elementHelper) || !is_callable($fieldsetHelper)) {
+            throw new \RuntimeException('Received non callable helper');
+        }
+
+        foreach ($element->getIterator() as $oElementOrFieldset) {
+            $options = $oElementOrFieldset->getOptions();
+            if ($elementLayout && empty($options['twb-layout'])) {
+                $options['twb-layout'] = $elementLayout;
+                $oElementOrFieldset->setOptions($options);
+            }
+
+            if ($oElementOrFieldset instanceof \Laminas\Form\FieldsetInterface) {
+                $markup .= $fieldsetHelper($oElementOrFieldset);
+            } elseif ($oElementOrFieldset instanceof \Laminas\Form\ElementInterface) {
+                if ($oElementOrFieldset->getOption('twb-row-open')) {
+                    $markup .= '<div class="row">' . "\n";
                 }
 
-                if ($oElementOrFieldset instanceof \Laminas\Form\FieldsetInterface) {
-                    $sMarkup .= $oFieldsetHelper($oElementOrFieldset);
-                } elseif ($oElementOrFieldset instanceof \Laminas\Form\ElementInterface) {
-                    if ($oElementOrFieldset->getOption('twb-row-open')) {
-                        $sMarkup .= '<div class="row">' . "\n";
-                    }
+                $markup .= $elementHelper($oElementOrFieldset);
 
-                    $sMarkup .= $oElementHelper($oElementOrFieldset);
-
-                    if ($oElementOrFieldset->getOption('twb-row-close')) {
-                        $sMarkup .= '</div>' . "\n";
-                    }
+                if ($oElementOrFieldset->getOption('twb-row-close')) {
+                    $markup .= '</div>' . "\n";
                 }
             }
-            if ($oElement instanceof \Laminas\Form\Element\Collection && $oElement->shouldCreateTemplate()) {
-                $sMarkup .= $this->renderTemplate($oElement);
-            }
+        }
+        if ($element instanceof \Laminas\Form\Element\Collection && $element->shouldCreateTemplate()) {
+            $markup .= $this->renderTemplate($element);
         }
 
         if ($bShouldWrap) {
-            if (false != ($sLabel = $oElement->getLabel())) {
+            if (false != ($sLabel = $element->getLabel())) {
                 if (null !== ($oTranslator = $this->getTranslator())) {
                     $sLabel = $oTranslator->translate($sLabel, $this->getTranslatorTextDomain());
                 }
 
-                $sMarkup = sprintf(
-                        static::$legendFormat, ($sAttributes = $this->createAttributesString($oElement->getLabelAttributes()? : array())) ? ' ' . $sAttributes : '', $this->getEscapeHtmlHelper()->__invoke($sLabel)
-                ) . $sMarkup;
+                $markup = sprintf(
+                        static::$legendFormat, ($sAttributes = $this->createAttributesString($element->getLabelAttributes()? : array())) ? ' ' . $sAttributes : '', $this->getEscapeHtmlHelper()->__invoke($sLabel)
+                ) . $markup;
             }
 
             //Set form layout class
-            if ($sElementLayout) {
-                $sLayoutClass = 'form-' . $sElementLayout;
-                if (false != ($sElementClass = $oElement->getAttribute('class'))) {
+            if ($elementLayout) {
+                $sLayoutClass = 'form-' . $elementLayout;
+                if (false != ($sElementClass = $element->getAttribute('class'))) {
                     if (!preg_match('/(\s|^)' . preg_quote($sLayoutClass, '/') . '(\s|$)/', $sElementClass)) {
-                        $oElement->setAttribute('class', trim($sElementClass . ' ' . $sLayoutClass));
+                        $element->setAttribute('class', trim($sElementClass . ' ' . $sLayoutClass));
                     }
                 } else {
-                    $oElement->setAttribute('class', $sLayoutClass);
+                    $element->setAttribute('class', $sLayoutClass);
                 }
             }
 
-            $sMarkup = sprintf(
-                    static::$fieldsetFormat, ($sAttributes = $this->createAttributesString($oElement->getAttributes())) ? ' ' . $sAttributes : '', $sMarkup
+            $markup = sprintf(
+                    static::$fieldsetFormat, ($sAttributes = $this->createAttributesString($element->getAttributes())) ? ' ' . $sAttributes : '', $markup
             );
         }
-        return $sMarkup;
+        return $markup;
     }
 
     /**
@@ -108,7 +111,7 @@ class TwbBundleFormCollection extends FormCollection
      * @param CollectionElement $collection
      * @return string
      */
-    public function renderTemplate(CollectionElement $collection)
+    public function renderTemplate(CollectionElement $collection): string
     {
         if (false != ($sElementLayout = $collection->getOption('twb-layout'))) {
             $elementOrFieldset = $collection->getTemplateElement();

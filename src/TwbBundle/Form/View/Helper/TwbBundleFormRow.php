@@ -48,7 +48,7 @@ class TwbBundleFormRow extends FormRow
      * @param ElementInterface $oElement
      * @return string
      */
-    public function render(ElementInterface $oElement, $sLabelPosition = null)
+    public function render(ElementInterface $oElement, $sLabelPosition = null): string
     {
         // Retrieve element type
         $sElementType = $oElement->getAttribute('type');

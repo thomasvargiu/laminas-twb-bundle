@@ -29,7 +29,7 @@ class TwbBundleBadge extends AbstractHelper
     /**
      * Retrieve badge markup
      * @param string $sBadgeMessage
-     * @param  array $aBadgeAttributes : [optionnal]
+     * @param  array $aBadgeAttributes : [optional]
      * @throws InvalidArgumentException
      * @return string
      */

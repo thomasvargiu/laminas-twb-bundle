@@ -50,7 +50,7 @@ class TwbBundleFormButton extends FormButton
      * @throws Exception
      * @return string
      */
-    public function render(ElementInterface $oElement, $sButtonContent = null)
+    public function render(ElementInterface $oElement, $sButtonContent = null): string
     {
         if ($sClass = $oElement->getAttribute('class')) {
             if (!preg_match('/(\s|^)btn(\s|$)/', $sClass)) {
